@@ -1,0 +1,14 @@
+kind: pipeline
+name: devsecops_check
+
+steps:
+- name: check_secrets
+  image: jjvargass/talisman:latest
+  commands:
+  - talisman --scan
+  when:
+    branch:
+    - develop
+    - feature/*
+    - hotfix/*
+    - release/*
